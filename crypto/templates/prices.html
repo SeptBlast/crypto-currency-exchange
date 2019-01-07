@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if notfound %}
+        <h2>Do write the correct Currency Symbol</h2><br />
+        <br />
+        <br />
+        {{ notfound }}
+    {% else %}
+
+        {% if crypto.Response %}
+<h2>Sorry, this <strong>{{quote}}</strong> doesn't exist. Please try again...</h2>
+        {% endif %}
+
+        {{ value.USD.PRICE }}
+            {% for key,value in crypto.DISPLAY.items %}
+
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">{{ key }}</h1>
+                    <strong>Price (USD)</strong> :{{ value.USD.PRICE }}<br />
+                    <strong>Price (EUR)</strong> :{{ value.EUR.PRICE }}<br />
+                    <strong>Price (INR)</strong> :{{ value.INR.PRICE }}<br />
+                    <strong>Day High</strong> :{{ value.USD.HIGHDAY }}<br />
+                    <strong>Day Low</strong> :{{ value.USD.LOWDAY }}<br />
+                    <strong>MarketCap</strong> :{{ value.USD.MKTCAP }}<br />
+                </div>
+            </div>
+            <br />    
+            {% endfor %}
+
+            <br />
+            <br />
+    {% endif %}
+    <!--{{ crypto }}-->
+
+{% endblock %}
